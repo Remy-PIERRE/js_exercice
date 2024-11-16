@@ -1,0 +1,158 @@
+/* RESET CSS  */
+
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/*
+    9. Create a root stacking context
+  */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* HEADER */
+.header--container {
+  width: 100%;
+  height: 80px;
+  padding: 0 40px;
+  background: #0c4a6e;
+  display: flex;
+  align-items: center;
+}
+
+.header--container form {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header--container input {
+  width: 280px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+
+.btn--add {
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn--add img {
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+}
+
+/* TABLE */
+.table--container {
+  width: calc(100% - 80px);
+  margin: 40px;
+  border-collapse: collapse;
+}
+
+.table--container thead {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.table--container thead tr {
+  height: 40px;
+}
+
+.table--container tbody tr {
+  height: 60px;
+}
+
+.table--container tbody tr:nth-child(odd) {
+  background: #eee;
+}
+
+.table--container td {
+  padding: 0 12px;
+}
+
+.btn--delete {
+  height: 28px;
+  width: 28px;
+  padding: 0;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn--delete img {
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+}
