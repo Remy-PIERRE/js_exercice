@@ -32,7 +32,7 @@ Cette série d'exercices va permettre d'utiliser un ensemble de méthodes utiles
 
 - créer un dossier <code>public</code> dans lequel nous insererons les images liées au projet
 
-## Manipulation du DOM avec Javascript
+## Création de la page
 
 Nous allons commencer par ajouter la structure du fichier HTML via JS.
 
@@ -228,3 +228,69 @@ Le tableau permettant d'afficher les fruits sera inséré directement dans le HT
 
 - Le résultat est il celui attendu ?
   - trouver une solution dans la fonction <code>initHTML</code> pour remettre les balises <code>header</code> & <code>table</code> dans le bon ordre.
+
+## Ajouter un nouveau fruit
+
+Nous allons maintenant récupérer une saisie utilisateur et ajouter une nouvelle ligne dans le tableau pour chaque valeur enregistrée.
+
+- créer une fonction <code>handleFruitAdd</code> puis appelez la à la fin de votre code JS
+  - dans celle-ci ajouter les instructions suivantes :
+    - écouter l'évenement "submit" du formulaire "formFruitAdd"
+      - annuler le comportement par defaut lors de la validation d'un formulaire
+      - récupérer la valeur de l'input "inputFruitName"
+      - vérifier que la valeur est valide (non null)
+      - créer une nouvelle balise <code>tr</code> et compléter la en copiant le modèle HTML (ne pas oublier les classes CSS)
+      - insérer dans la balise <code>td</code> le nom du nouveau fruit
+      - insérer la balise <code>tr</code> à la suite des lignes déjà en place dans le tableau
+
+Construire les éléments HTML de cette manière est laborieux. Nous allons maintenant utiliser un template pour faciliter cette fonctionnalité.
+
+- créer un <code>template</code> dans le fichier .html
+  - le contenue du template copie une des balise <code>tr</code> déjà presente et ses balises enfants, mais en supprimant le contenue dynamique (ici le nom du fruit)
+  - le template est inséré dans la balise <code>tbody</code> du fichier .html
+- modifier le code du fichier .js pour utiliser le <code>template</code> plutot que de créer tous les éléments à la main
+
+<details>
+<summary>Le template en HTML</summary>
+
+```html
+<template id="templateFruitRow">
+  <tr>
+    <td></td>
+    <td>
+      <button class="btn--delete">
+        <img
+          src="./public/poubelle.png"
+          alt="Un icône poubelle pour le bouton permettant de supprimer un fruit"
+        />
+      </button>
+    </td>
+  </tr>
+</template>
+```
+
+</details>
+
+<details>
+<summary>Utilisation du template en JS</summary>
+
+```js
+function createFruitRowFromTemplate(value) {
+  const template = document.querySelector("#templateFruitRow");
+  const clone = template.content.cloneNode(true);
+
+  clone.querySelector("td").innerText = value;
+
+  document.querySelector("tbody").appendChild(clone);
+}
+```
+
+</details>
+
+### Suprimer un fruit
+
+Nous allons maintenant ajouter la possibilité de supprimé chaque fruit.
+
+- avant d'insérer le template dans le DOM (<code>document.querySelector("tbody").appendChild(clone);</code>), ajouter un écouteur d'évenement au bouton
+  - séléctionner la balise parente <code>tr</code> de ce bouton
+  - supprimer du DOM cet élément
